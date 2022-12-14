@@ -1,34 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Goals
 
-## Getting Started
+Todo apps are a staple for a reason, there's a bunch of fundamental concepts needed to make one that works like you'd expect. I'm intending to make this a fun, modular project that has room to grow into a general productivity site with TODO, Kanban, and whatever else I think of handled under one auth scheme. Eventually the goal is to integrate everything into a user friendly all purpose tool and iterate on what people gain value from.
 
-First, run the development server:
+# TODO LIST Since my TODO app is still in the early stages :)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Get basic page layout working
+  - Add dark mode because dark mode
+  - Could add whole app color customizations at some point
+- Add code to componnets to make the basic display work (use dummy data)
+  - Live site with info saved to local storage at this point.
+- Setup db + ORM to start using real data
+- Add Auth to handle multiple users
+  - Update live site to be a full fledged app
+- Integrate this with my Kanban App to make a productivity site
+- Check out if analytics can be routed back to the user, or create some way of displaying productivity data
+  - Release combined app
