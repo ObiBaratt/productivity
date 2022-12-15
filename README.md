@@ -13,5 +13,6 @@ Todo apps are a staple for a reason, there's a bunch of fundamental concepts nee
 - Add Auth to handle multiple users
   - Update live site to be a full fledged app
 - Integrate this with my Kanban App to make a productivity site
+  - Have "Add to Kanban" button on Tasks (Use leftside Kanban pic)
 - Check out if analytics can be routed back to the user, or create some way of displaying productivity data
   - Release combined app
