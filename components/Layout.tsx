@@ -8,20 +8,27 @@ TODOS:
 */
 
 const Header = styled.div`
-    background: blue;
+    background: skyblue;
     padding: 8px 0;
     margin: 0 0 2rem;
 `
 
-const Logo = styled.h2`
+const Navbar = styled.nav`
     display: flex;
-    color: red;
+    justify-content: space-between;
+    font-size: xx-large;
+    color: black;
     margin: 0;
+`
+
+const NavGroup = styled.div`
+    display: flex;
+    justify-content: space-around;
 `
 
 const Container = styled.div`
     max-width: 80%;
-    margin 0 auto;
+    margin: 0 auto;
     padding: 0 2 rem;
 `
 const Body = styled.div`
@@ -34,9 +41,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <>
             <Header>
                 <Container>
-                    <Logo>
-                        Logo Goes Here
-                    </Logo>
+                    <Navbar>
+                        <div>LOGO</div>
+                        <NavGroup>
+                        <div>Menu</div>
+                        <div>Items</div>
+                        <div>Here</div>
+                        </NavGroup>
+                    </Navbar>
                 </Container>
             </Header>
 
