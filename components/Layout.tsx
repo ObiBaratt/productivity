@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Link from 'next/link';
+
 /*
 TODOS:
 1. Change Header / Logo colors to be variable. Initially set from a defined CSS color palette.
@@ -42,12 +44,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Header>
                 <Container>
                     <Navbar>
-                        <div>LOGO</div>
-                        <NavGroup>
-                        <div>Menu</div>
-                        <div>Items</div>
-                        <div>Here</div>
-                        </NavGroup>
+                        <Link href={"/"}>HOMEIMG</Link>
+                        {/* <NavGroup> */}
+                            <Link href={"/todo"}>Todo</Link>
+                            <Link href={"/kanban"}>Kanban</Link>
+                            <Link href={"/pomodoro"}>Pomodoro</Link>
+                            <Link href={"/about"}>About</Link>
+                        {/* </NavGroup> */}
                     </Navbar>
                 </Container>
             </Header>
