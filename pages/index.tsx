@@ -12,10 +12,24 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to ToDoNext
+          ToDoNext, a customizable productivity suite.
         </h1>
 
-        <div className={styles.grid}>
+        <section id='description' className={styles.fifty}>
+          <h1>What is the purpose of this?</h1>
+          <div>
+              <p>Ever tried a ToDo app? How about Kanban? They can be great productivity boosters but...</p>
+
+              <p>Its hard to keep up the habit, and who wants to setup the same tasks in multiple places?</p>
+
+              <p>Thats where ToDoNext comes in, we integrate ToDo, Kanban, and more to make this a one stop
+              shop to manage the endless list of things to do!</p>
+          </div>
+
+          <h1>Ready to get started?</h1>
+        </section>
+
+        <section id='apps' className={styles.grid}>
           <a href="/todo" className={styles.card}>
             <h2>TODO List &rarr;</h2>
             <p>Get right into it, manage your TODO list.</p>
@@ -45,7 +59,7 @@ export default function Home() {
               Setup Pomodoro timers to boost overall productivity.
             </p>
           </a>
-        </div>
+        </section>
       </main>
 
       <footer className={styles.footer}>
