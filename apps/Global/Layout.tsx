@@ -23,11 +23,6 @@ const Navbar = styled.nav`
     margin: 0;
 `
 
-const NavGroup = styled.div`
-    display: flex;
-    justify-content: space-around;
-`
-
 const Container = styled.div`
     max-width: 80%;
     margin: 0 auto;
@@ -45,12 +40,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <Container>
                     <Navbar>
                         <Link href={"/"}>HOMEIMG</Link>
-                        {/* <NavGroup> */}
-                            <Link href={"/todo"}>Todo</Link>
-                            <Link href={"/kanban"}>Kanban</Link>
-                            <Link href={"/pomodoro"}>Pomodoro</Link>
-                            <Link href={"/about"}>About</Link>
-                        {/* </NavGroup> */}
+                        <Link href={"/todo"}>Todo</Link>
+                        <Link href={"/kanban"}>Kanban</Link>
+                        <Link href={"/pomodoro"}>Pomodoro</Link>
+                        <Link href={"/about"}>About</Link>
                     </Navbar>
                 </Container>
             </Header>
