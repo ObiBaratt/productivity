@@ -12,7 +12,7 @@ Todo apps are a staple for a reason, there's a bunch of fundamental concepts nee
 ### SQL / NoSQL
 
 - Leaning towards NoSQL due to the data being used in different ways across apps. Big benefit is being able to easily change data shapes.
-- Leaning slightly more towards SQL for the same reason... it would enforce consistancy. Currently the only relationship would be from User to Task. I'm currently brainstorming reasons why
+- Leaning slightly more towards SQL for the same reason... it would enforce consistancy. Currently the only relationship would be from User to Task.
 
 ### Modular Apps
 
@@ -54,6 +54,7 @@ What makes something actually boost productivity? What is essential to making th
 
 - Team integrations? What's better than making a TODO list for yourself? Assigning it to someone else!
   - Adding Org Users or Management Users to make it more of a business tool
+  - Multiplayer using y.js
 - Calendar integrations...
   - Tricky, I'm not envisioning this being a calendar, but reading tasks from a linked calendar and creating a daily todo list / agenda would be useful.
 - Dark mode / whole app color customizations context
