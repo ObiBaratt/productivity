@@ -2,6 +2,7 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
@@ -32,15 +33,19 @@ const Home: NextPage = () => {
         </section>
 
         <section id='apps' className={styles.grid}>
-          <a href="/todo" className={styles.card}>
-            <h2>TODO List &rarr;</h2>
-            <p>Get right into it, manage your TODO list.</p>
-          </a>
+          <span  className={styles.card}>
+            <Link href="/todo">
+              <h2>TODO List &rarr;</h2>
+              <p>Get right into it, manage your TODO list.</p>
+            </Link>
+          </span>
 
-          <a href="/about" className={styles.card}>
-            <h2>About &rarr;</h2>
-            <p>Learn about productivity techniques, and how to best use this app.</p>
-          </a>
+          <span className={styles.card}>
+            <Link href="/about">
+              <h2>About &rarr;</h2>
+              <p>Learn about productivity techniques, and how to best use this app.</p>
+            </Link>
+          </span>
 
           <a
             href="https://kanban-ob.netlify.app/"
@@ -52,15 +57,14 @@ const Home: NextPage = () => {
             <p>Free cloud based Kanban board? Lets go! Currently hosted on another site.</p>
           </a>
 
-          <a
-            href="/pomodoro"
-            className={styles.card}
-          >
-            <h2>Pomodoro &rarr;</h2>
-            <p>
-              Setup Pomodoro timers to boost overall productivity.
-            </p>
-          </a>
+          <span className={styles.card}>
+            <Link href="/pomodoro">
+              <h2>Pomodoro &rarr;</h2>
+              <p>Setup a pomodoro timer to create focused work time.</p>
+            </Link>
+          </span>
+
+
         </section>
       </main>
 
