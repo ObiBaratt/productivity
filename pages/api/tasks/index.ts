@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case "GET":
       return res.status(200).send(
         await prisma.task.findMany({
-          where: { isDone: false, isTrash: false },
+          where: { isTrash: false },
         })
       );
     case "POST":
