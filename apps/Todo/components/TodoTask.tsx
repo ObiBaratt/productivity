@@ -2,6 +2,8 @@ import { Prisma, Task } from "@prisma/client";
 import axios from "axios";
 import { MdCheck } from "react-icons/md";
 import styled from "styled-components";
+import { TaskContext, TaskContextTypes } from "../../../context/taskContext";
+import { useContext } from "react";
 
 const Card = styled.div`
   display: grid;
@@ -10,6 +12,7 @@ const Card = styled.div`
   gap: 0.75rem;
   align-items: center;
 `;
+
 const Text = styled.h2`
   margin: 0;
   font-size: inherit;
@@ -54,8 +57,11 @@ const TrashButton = styled.button`
 `;
 
 const TodoTask: React.FC<Task> = ({ id, isDone, title, text, isTrash }) => {
-  const updateTask = async (newTaskData: Prisma.TaskUpdateInput) => {
+  const { updateTasks } = useContext(TaskContext) as TaskContextTypes;
+
+  const updateThis = async (newTaskData: Prisma.TaskUpdateInput) => {
     const { data } = await axios.put<Task>(`/api/tasks/${id}`, newTaskData);
+    updateTasks();
     return data;
   };
 
@@ -63,13 +69,13 @@ const TodoTask: React.FC<Task> = ({ id, isDone, title, text, isTrash }) => {
     <Card>
       <DoneButton
         isDone={!!isDone}
-        onClick={() => updateTask({ isDone: !isDone })}
+        onClick={() => updateThis({ isDone: !isDone })}
       >
         <MdCheck />
       </DoneButton>
       <Text>
         {isTrash ? null : (
-          <TrashButton onClick={() => updateTask({ isTrash: true })}>
+          <TrashButton onClick={() => updateThis({ isTrash: true })}>
             🗑️
           </TrashButton>
         )}
