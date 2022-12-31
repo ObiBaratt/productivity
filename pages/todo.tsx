@@ -1,20 +1,17 @@
-import { Task } from "@prisma/client";
 import type { NextPage } from "next";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import TodoTask from "../apps/Todo/components/TodoTask";
 
+import { TaskContext, TaskContextTypes } from "../context/taskContext";
+
 const Todo: NextPage = () => {
-  const [tasks, setTasks] = useState<Task[] | []>([]);
-  const [completed, setCompleted] = useState<Task[] | []>([]);
+  const { tasks, updateTasks } = useContext(TaskContext) as TaskContextTypes;
 
   useEffect(() => {
-    const getTasks = async () => {
-      const { data } = await axios.get<Task[]>(`/api/tasks`);
-      setTasks(data);
-    };
-    getTasks();
-  });
+    console.log('ue running')
+    updateTasks()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
