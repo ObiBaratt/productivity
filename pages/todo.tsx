@@ -10,6 +10,7 @@ const Todo: NextPage = () => {
   useEffect(() => {
     console.log('ue running')
     updateTasks()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
