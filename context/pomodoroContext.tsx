@@ -23,26 +23,37 @@ const DEFAULT_TIMES = {
 // TODO: Add actual timer function
 export const PomodoroProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [timer, setTimer] = useState<number>(0);
+  const [timer, setTimer] = useState<number>(DEFAULT_TIMES.work);
+  let timerId: NodeJS.Timer | undefined;
+
+  const startTimer = () => {
+    timerId = setInterval(() => {
+      console.log("tick");
+      setTimer(timer - 1);
+    }, 1000);
+  };
 
   const start = () => {
+    console.log("starting");
     setIsRunning(true);
-    setTimer(DEFAULT_TIMES.work)
+    setTimer(DEFAULT_TIMES.work);
+    startTimer();
   };
 
   const stop = (pause: boolean = false, rest: boolean = true) => {
-    if (pause) {
-      setIsRunning(false);
+    console.log("stopping");
+    setIsRunning(false);
+    if (!rest) {
+      clearInterval(timerId);
     }
-    else {
-      setIsRunning(false);
+    if (!pause) {
       setTimer(0);
     }
   };
 
   return (
-    <PomodoroContext.Provider
-      value={{ isRunning, start, stop, timer }}
-    ></PomodoroContext.Provider>
+    <PomodoroContext.Provider value={{ isRunning, start, stop, timer }}>
+      {children}
+    </PomodoroContext.Provider>
   );
 };
