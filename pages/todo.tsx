@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useContext } from "react";
 import TodoTask from "../apps/Todo/components/TodoTask";
 
 import { TaskContext, TaskContextTypes } from "../context/taskContext";
