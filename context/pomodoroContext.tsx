@@ -1,4 +1,10 @@
-import React, { createContext, useState, FC, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  FC,
+  ReactNode,
+  useEffect,
+} from "react";
 
 export interface PomodoroContextTypes {
   isRunning: boolean;
@@ -20,35 +26,29 @@ const DEFAULT_TIMES = {
   rest: 300,
 };
 
-// TODO: Add actual timer function
 export const PomodoroProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(DEFAULT_TIMES.work);
-  let timerId: NodeJS.Timer | undefined;
 
-  const startTimer = () => {
-    timerId = setInterval(() => {
-      console.log("tick");
-      setTimer(timer - 1);
-    }, 1000);
-  };
+  useEffect(() => {
+    if (isRunning) {
+      const intervalId = setInterval(() => {
+        setTimer(timer - 1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  }, [isRunning, timer]);
 
   const start = () => {
-    console.log("starting");
+    console.log("starting pomodoro");
     setIsRunning(true);
     setTimer(DEFAULT_TIMES.work);
-    startTimer();
   };
 
-  const stop = (pause: boolean = false, rest: boolean = true) => {
-    console.log("stopping");
+  const stop = () => {
+    console.log("stopping pomodoro");
     setIsRunning(false);
-    if (!rest) {
-      clearInterval(timerId);
-    }
-    if (!pause) {
-      setTimer(0);
-    }
+    setTimer(0);
   };
 
   return (

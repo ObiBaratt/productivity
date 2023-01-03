@@ -2,11 +2,10 @@ import type { NextPage } from "next";
 import { useContext } from "react";
 import {
   PomodoroContext,
-  PomodoroContextTypes,
 } from "../context/pomodoroContext";
 
 const Pomodoro: NextPage = () => {
-  const { isRunning, start, stop, timer } = useContext(PomodoroContext);
+  const { start, stop, timer } = useContext(PomodoroContext);
 
   return (
     <>
