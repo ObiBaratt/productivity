@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState, FC, ReactNode } from "react";
 import axios from "axios";
 
 import { Task } from "@prisma/client";
@@ -13,7 +13,7 @@ export const TaskContext = createContext<TaskContextTypes>({
   updateTasks: () => Promise.resolve(),
 });
 
-export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
+export const TaskProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
