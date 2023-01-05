@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PomodoroContext } from "../context/pomodoroContext";
 
 const Pomodoro: NextPage = () => {
