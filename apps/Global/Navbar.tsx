@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-const NavbarWrapper = styled.nav`
+const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   `;
@@ -27,9 +26,6 @@ const NavbarMenu = styled.ul`
 
 const NavbarMenuItem = styled.li`
   margin: 0 0.5rem;
-`;
-
-const NavbarMenuLink = styled.span`
   display: block;
   padding: 0.5rem 1rem;
   color: #000000;
@@ -73,7 +69,7 @@ const NavbarCollapse = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isMenuCollapsed, setMenuCollapsed] = useState(true);
 
   const toggleMenu = () => {
@@ -81,7 +77,7 @@ const Navbar = () => {
   };
 
   return (
-    <NavbarWrapper>
+    <Nav>
       <NavbarBrand>
         <Link href={"/"}>HOME</Link>
       </NavbarBrand>
@@ -89,28 +85,20 @@ const Navbar = () => {
       <NavbarCollapse className={isMenuCollapsed ? "collapsed" : ""}>
         <NavbarMenu>
           <NavbarMenuItem>
-            <NavbarMenuLink>
               <Link href={"/todo"}>Todo</Link>
-            </NavbarMenuLink>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <NavbarMenuLink>
               <Link href={"/kanban"}>Kanban</Link>
-            </NavbarMenuLink>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <NavbarMenuLink>
               <Link href={"/pomodoro"}>Pomodoro</Link>
-            </NavbarMenuLink>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <NavbarMenuLink>
               <Link href={"/about"}>About</Link>
-            </NavbarMenuLink>
           </NavbarMenuItem>
         </NavbarMenu>
       </NavbarCollapse>
-    </NavbarWrapper>
+    </Nav>
   );
 };
 
