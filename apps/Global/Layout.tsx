@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Link from 'next/link';
+import Navbar from './Navbar';
 
 /*
 TODOS:
@@ -10,17 +9,9 @@ TODOS:
 */
 
 const Header = styled.div`
-    background: skyblue;
+    background: white;
     padding: 8px 0;
     margin: 0 0 2rem;
-`
-
-const Navbar = styled.nav`
-    display: flex;
-    justify-content: space-between;
-    font-size: xx-large;
-    color: black;
-    margin: 0;
 `
 
 const Container = styled.div`
@@ -38,13 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <>
             <Header>
                 <Container>
-                    <Navbar>
-                        <Link href={"/"}>HOMEIMG</Link>
-                        <Link href={"/todo"}>Todo</Link>
-                        <Link href={"/kanban"}>Kanban</Link>
-                        <Link href={"/pomodoro"}>Pomodoro</Link>
-                        <Link href={"/about"}>About</Link>
-                    </Navbar>
+                    <Navbar />
                 </Container>
             </Header>
 
