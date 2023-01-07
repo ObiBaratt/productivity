@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useContext } from "react";
 import { PomodoroContext } from "../context/pomodoroContext";
+import Head from "next/head";
 
 const Pomodoro: NextPage = () => {
   const { start, stop, timer, isResting } = useContext(PomodoroContext);
@@ -30,6 +31,11 @@ const Pomodoro: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Next UP: Pomodoro</title>
+        <meta name="description" content="Pomodoro Timer" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1>Pomodoro Timer</h1>
       {handleDisplay()}
 

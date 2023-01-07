@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
 
 const Nav = styled.nav`
@@ -9,7 +10,7 @@ const Nav = styled.nav`
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  `;
+`;
 
 const NavbarBrand = styled.div`
   font-size: 1.5rem;
@@ -79,22 +80,22 @@ const Navbar: React.FC = () => {
   return (
     <Nav>
       <NavbarBrand>
-        <Link href={"/"}>HOME</Link>
+        <Link href={"/"}>Next Up</Link>
       </NavbarBrand>
       <NavbarToggle onClick={toggleMenu}>&#9776;</NavbarToggle>
       <NavbarCollapse className={isMenuCollapsed ? "collapsed" : ""}>
         <NavbarMenu>
           <NavbarMenuItem>
-              <Link href={"/todo"}>Todo</Link>
+            <Link href={"/todo"}>Todo</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-              <Link href={"/kanban"}>Kanban</Link>
+            <Link href={"/kanban"}>Kanban</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-              <Link href={"/pomodoro"}>Pomodoro</Link>
+            <Link href={"/pomodoro"}>Pomodoro</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-              <Link href={"/about"}>About</Link>
+            <Link href={"/about"}>About</Link>
           </NavbarMenuItem>
         </NavbarMenu>
       </NavbarCollapse>
