@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { TaskContext, TaskContextTypes } from "../../../context/taskContext";
 import { useContext } from "react";
 
-const Card = styled.div`
+const Todo = styled.div`
   display: grid;
   font-size: x-large;
   grid-template-columns: min-content auto;
@@ -66,7 +66,7 @@ const TodoTask: React.FC<Task> = ({ id, isDone, title, text, isTrash }) => {
   };
 
   return (
-    <Card>
+    <Todo>
       <DoneButton
         isDone={!!isDone}
         onClick={() => updateThis({ isDone: !isDone })}
@@ -74,15 +74,15 @@ const TodoTask: React.FC<Task> = ({ id, isDone, title, text, isTrash }) => {
         <MdCheck />
       </DoneButton>
       <Text>
+        {title}
+        {text}
         {isTrash ? null : (
           <TrashButton onClick={() => updateThis({ isTrash: true })}>
             🗑️
           </TrashButton>
         )}
-        {title}
-        {text}
       </Text>
-    </Card>
+    </Todo>
   );
 };
 

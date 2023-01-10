@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import TodoTask from "../apps/Todo/components/TodoTask";
 import CreateTodo from "../apps/Todo/components/TodoList";
 import Head from "next/head";
@@ -8,11 +8,16 @@ import { TaskContext, TaskContextTypes } from "../context/taskContext";
 
 const Todo: NextPage = () => {
   const { tasks, updateTasks } = useContext(TaskContext) as TaskContextTypes;
+  const [loading, setLoading] = useState<boolean>(true);
 
+  // only ever want this to run once, other fetching will be handled manually
   useEffect(() => {
-    console.log("ue running");
-    updateTasks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetch = async () => {
+      await updateTasks();
+      setLoading(false);
+    };
+    fetch();
+    console.log("fetching");
   }, []);
 
   return (
@@ -24,7 +29,10 @@ const Todo: NextPage = () => {
       </Head>
       {/* <CreateTodo /> */}
       <h1>To-do</h1>
-      {tasks?.length && tasks.length > 0 ? (
+
+      {loading ? (
+        <h2>Loading tasks...</h2>
+      ) : tasks?.filter((task) => !task.isDone).length > 0 ? (
         tasks
           .filter((task) => !task.isDone)
           .map((task) => <TodoTask key={task.id} {...task} />)
@@ -33,7 +41,9 @@ const Todo: NextPage = () => {
       )}
 
       <h1>Completed</h1>
-      {tasks?.length && tasks.length > 0 ? (
+      {loading ? (
+        <h2>Loading tasks...</h2>
+      ) : tasks?.filter((task) => task.isDone).length > 0 ? (
         tasks
           .filter((task) => task.isDone)
           .map((task) => <TodoTask key={task.id} {...task} />)
