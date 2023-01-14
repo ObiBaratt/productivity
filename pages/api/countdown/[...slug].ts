@@ -81,9 +81,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       console.log(handledTime);
 
       const future: number = new Date(userInput).valueOf() + handledTime.ms;
-      const now: number = Date.now();
+      const now: Date = new Date();
 
-      const msTill: number = new Date(future - now).getTime();
+      const msTill: number = new Date(future - now.getTime()).getTime();
 
       const seconds: number = Math.floor(msTill / 1000);
       const minutes: number = Math.floor(seconds / 60);
