@@ -60,6 +60,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (!month || !day || !year) {
       const { query } = req.query;
       res.status(400).json({
+        Status: "https://httpstatusdogs.com/400-bad-request",
         Error: "You didn't correctly format your request.",
         Your_Input: `${query}`,
         Solution:
@@ -68,6 +69,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       });
     } else if (day > maxValidDay) {
       res.status(400).json({
+        Status: "https://httpstatusdogs.com/400-bad-request",
         Error:
           "Some months (4, 6, 9, 11) only have 30 days, additionally Feb only has 29 days on Leap years which happen every 4 years and result in Febuary having 29 days.",
         Solution:
@@ -80,6 +82,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const handledTime = handleTimeParam(timeParam);
 
       const future: number = new Date(userInput).valueOf() + handledTime.ms;
+
+      if (Number.isNaN(future)) {
+        res.status(400).json({
+          Status: "https://httpstatusdogs.com/400-bad-request",
+          Error:
+            "Invalid Timezone parameter, double check your input and try again.",
+        });
+      }
       const now: Date = new Date();
 
       const msTill: number = new Date(future - now.getTime()).getTime();
