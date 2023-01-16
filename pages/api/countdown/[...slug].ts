@@ -41,10 +41,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const MONTHS_WITH_30_DAYS = [4, 6, 9, 11];
   if (slug) {
-    const month: number = parseInt(slug[0]);
-    const day: number = parseInt(slug[1]);
-    const year: number = parseInt(slug[2]);
-    const timeParam: string = slug[3];
+    const timezone: string = slug[0].toUpperCase();
+    const month: number = parseInt(slug[1]);
+    const day: number = parseInt(slug[2]);
+    const year: number = parseInt(slug[3]);
+    const timeParam: string = slug[4];
 
     let maxValidDay: number = MONTHS_WITH_30_DAYS.includes(month) ? 30 : 31;
 
@@ -62,7 +63,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         Error: "You didn't correctly format your request.",
         Your_Input: `${query}`,
         Solution:
-          "Use this format: /api/countdown/MM/DD/YYYY/TT:TT. YY will work but can return past AND future values depending on the input! Ex. 12/12/49 returns the Dec 12, 2049, while 12/12/50 returns Dec 12, 1950...TT:TT refers to a specific time on the given date, and is OPTIONAL, it used it MUST be in 24hr clock syntax i.e. 17:25 NOT 5:25pm",
+          "Use this format: /api/countdown/TIMEZONE/MM/DD/YYYY/TT:TT. YY will work but can return past AND future values depending on the input! Ex. 12/12/49 returns the Dec 12, 2049, while 12/12/50 returns Dec 12, 1950...TT:TT refers to a specific time on the given date, and is OPTIONAL, it used it MUST be in 24hr clock syntax i.e. 17:25 NOT 5:25pm",
         Help: "Visit https://ob-nextup.vercel.app/countdown",
       });
     } else if (day > maxValidDay) {
@@ -74,11 +75,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       });
     }
     {
-      const userInput: string = `${month}/${day}/${year}`;
+      const userInput: string = `${month}/${day}/${year} ${timezone}`;
 
       const handledTime = handleTimeParam(timeParam);
-
-      console.log(handledTime);
 
       const future: number = new Date(userInput).valueOf() + handledTime.ms;
       const now: Date = new Date();
@@ -99,11 +98,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         },
         Response: {
           requestTimestamp: new Date(now).toLocaleString(),
-          seconds: seconds % 60,
-          minutes: minutes % 60,
-          hours: hours % 24,
-          days: days % 365,
-          years: years,
+          countdown: {
+            seconds: seconds % 60,
+            minutes: minutes % 60,
+            hours: hours % 24,
+            days: days % 365,
+            years: years,
+          },
         },
       });
     }
