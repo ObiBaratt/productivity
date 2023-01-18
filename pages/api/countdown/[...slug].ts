@@ -65,6 +65,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         Your_Input: `${query}`,
         Solution:
           "Use this format: /api/countdown/TIMEZONE/MM/DD/YYYY/TT:TT. YY will work but can return past AND future values depending on the input! Ex. 12/12/49 returns the Dec 12, 2049, while 12/12/50 returns Dec 12, 1950...TT:TT refers to a specific time on the given date, and is OPTIONAL, it used it MUST be in 24hr clock syntax i.e. 17:25 NOT 5:25pm",
+        Example: "/api/countdown/est/01/18/2023/8:00",
         Help: "Visit https://ob-nextup.vercel.app/countdown",
       });
     } else if (day > maxValidDay) {
