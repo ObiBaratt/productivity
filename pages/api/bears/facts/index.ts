@@ -1,18 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../../lib/prisma";
 
-const VALID_PARAMS = [
-  "count",
-  //"id",
-  "start",
-  "random",
-  "search",
-  "exclude",
-];
+const VALID_PARAMS = ["count", "id", "start", "random", "search", "exclude"];
+
+const MIN = 1;
+const MAX = 30;
 
 // http://localhost:3000/api/bears/facts?&count=5&start=3&dinner=Salmon,hikers,honey
 // req.query = { count: '5', start: '3', dinner: 'Salmon,hikers,honey' }
 
+// SEARCH FUNCTIONALITY
 // await prisma.facts.findMany({
 //   where: {
 //     fact: {
@@ -30,7 +27,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.query.random) {
-    // RETURN RANDOM ITEM
+    const randNum = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+    let url;
+    if (process.env.NODE_ENV === "production") {
+      url = `https://ob-nextup.vercel.app/api/bears/facts/${randNum}`;
+    } else {
+      url = `http://localhost:3000/api/bears/facts/${randNum}`;
+    }
+    const data = await fetch(url).then((data) => data.json());
+    return res.status(200).send(data);
   }
 
   let searchQuery;
