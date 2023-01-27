@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import Cors from "cors";
 import { prisma } from "../../../../../lib/prisma";
 
 const VALID_PARAMS = ["count", "id", "start", "random", "search", "exclude"];
@@ -18,8 +19,29 @@ const MAX = 30;
 //   }
 // })
 
+const cors = Cors({
+  methods: ["GET"],
+});
+
+function runMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  fn: Function
+) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(req.query);
+  await runMiddleware(req, res, cors);
+
   if (req.method !== "GET") {
     return res.status(405).json({
       Error: "Method not allowed, this route is only for GET requets.",
