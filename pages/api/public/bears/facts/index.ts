@@ -52,9 +52,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const randNum = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
     let url;
     if (process.env.NODE_ENV === "production") {
-      url = `https://ob-nextup.vercel.app/api/bears/facts/${randNum}`;
+      url = `https://ob-nextup.vercel.app/api/public/bears/facts/${randNum}`;
     } else {
-      url = `http://localhost:3000/api/bears/facts/${randNum}`;
+      url = `http://localhost:3000/api/public/bears/facts/${randNum}`;
     }
     const data = await fetch(url).then((data) => data.json());
     return res.status(200).send(data);
