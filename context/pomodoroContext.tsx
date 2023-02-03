@@ -22,8 +22,10 @@ export const PomodoroContext = createContext<PomodoroContextTypes>({
 
 // Times in seconds, so default work is 25min, break 5
 const DEFAULT_TIMES = {
-  work: 1500,
-  rest: 300,
+  work: 5,
+  rest: 3,
+  numCycles: "not implemented",
+  longRest: "not implemented",
 };
 
 export const PomodoroProvider: FC<{ children: ReactNode }> = ({ children }) => {
