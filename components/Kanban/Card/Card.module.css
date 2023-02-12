@@ -1,0 +1,14 @@
+.card {
+  background-color: red;
+  color: black;
+  height: 300px;
+  width: 350px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.text {
+  font-size: 16px;
+}
