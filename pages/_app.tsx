@@ -4,18 +4,21 @@ import { Analytics } from "@vercel/analytics/react";
 import Layout from "../components/Global/Layout";
 import { TaskProvider } from "../context/taskContext";
 import { PomodoroProvider } from "../context/pomodoroContext";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <TaskProvider>
-        <PomodoroProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </PomodoroProvider>
-      </TaskProvider>
-      <Analytics />
+      <UserProvider>
+        <TaskProvider>
+          <PomodoroProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </PomodoroProvider>
+        </TaskProvider>
+        <Analytics />
+      </UserProvider>
     </>
   );
 }
